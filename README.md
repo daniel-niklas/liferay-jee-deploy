@@ -78,9 +78,28 @@ be done automatically:
      
 		<module name="org.liferayext.portal" services="export" />
 
+*   patch `com.liferay.faces.bridge.ext-5.0.1.jar`     
+  
+    This artefact does not work outside of an OSGI context: <https://issues.liferay.com/browse/FACES-3233>
+
+    Simple Workaround to Patch this on your own:
+     ** copy artefact `com.liferay.faces.bridge.ext-5.0.1.jar` of your m2-repository to `com.liferay.faces.bridge.ext-5.0.1-patched1.jar`
+     ** remove 'META-INF/services/com.sun.faces.spi.FaceletConfigResourceProvider' and `META-INF/services/com.sun.faces.spi.FacesConfigResourceProvider`
+ 
 
 ## TODO:
 *    build jboss-module using maven-plugin `de.smartics.maven.plugin:smartics-jboss-modules-maven-plugin`
 *    check/enable support for Tomcat
+*    use new Liferay Faces Bridge 4.1
+*    use patch for `FACES-3233` when `com.liferay.faces.bridge.ext-5.0.1.jar` is availabe
+
+
+----------
+
+# Example Portlet
+
+The artefact `lr7-jsf-portlet`contains a hello world portlet to demonstrate this. It is a jsf portlet.
+
+![Screenshot hello world portlet](./screeshot-demo-portlet.JPG)
      
     
