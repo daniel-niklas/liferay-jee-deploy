@@ -1,6 +1,6 @@
 # liferay-jee-deploy
 
-**This extension for Liferay enables traditional jee deployments for Liferay 7 **. 
+**This extension for Liferay enables traditional jee deployments for Liferay 7**. 
 
 ## What does this mean?
 - deploy a war artefact
