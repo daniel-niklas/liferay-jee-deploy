@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+	version="2.0">
+
+	<portlet>
+		<portlet-name>lr7-jsf-portlet</portlet-name>
+		<!-- <portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class> -->
+		<portlet-class>org.liferayext.portlet.jsf.ApplicationAssociatePatchedPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/WEB-INF/views/hello-world.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>JSF-Portlet Liferay 7</title>
+		</portlet-info>
+	</portlet>
+
+</portlet-app>

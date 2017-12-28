@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.1">
+	<deployment>
+		<dependencies>
+			<module name="org.liferayext.portal" annotations="true"
+				services="export">
+				<imports>
+					<include path="META-INF" />
+					<include path="META-INF/**" />
+				</imports>
+			</module>
+			<module name="com.liferay.portal" export="true" />
+		</dependencies>
+	</deployment>
+</jboss-deployment-structure>

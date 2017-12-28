@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+	</h:head>
+
+	<h:body>
+		<h:form id="form">
+			<h1>
+				JSF-Portlet - <b>jee deployment</b>!
+			</h1>
+
+			<p>This web application contains one portlet and is deployed
+				without use of OSGI.</p>
+
+			<div class="row">
+				<div class="col-md-2">
+					<h:outputLabel for="name" value="Name" />
+				</div>
+				<div class="col-md-4">
+					<h:inputText id="name" value="#{helloWorldBean.name}"></h:inputText>
+				</div>
+			</div>
+
+			<div style="margin: 10px 0;">
+				<h:commandButton id="commandButton"
+					action="#{helloWorldBean.onSayHello}" value="Say Hello"
+					styleClass="btn">
+					<f:ajax render="@form" execute="@form"></f:ajax>
+				</h:commandButton>
+			</div>
+
+			<div style="margin: 10px 0;" class="well">#{helloWorldBean.message}</div>
+
+		</h:form>
+	</h:body>
+</f:view>
