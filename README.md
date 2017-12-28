@@ -1,6 +1,6 @@
 # liferay-jee-deploy
 
-**This extension for Liferay enables traditional jee deployments for Liferay 7**.
+**This extension for Liferay enables traditional jee deployments for Liferay 7**. 
 
 ## What does this mean?
 - deploy a war artefact
@@ -52,11 +52,11 @@ be done automatically:
 ## Use this on Wildfly 10 / Liferay 7
 
 *    install module `org.liferayext.portal`
-     `mvn package` builds the module, copy this to `./liferay-ce-portal-7.0-ga5/wildfly-10.0.0/modules`
+     `mvn package` builds the module, copy `liferay-jee-deploy-1.0.0-SNAPSHOT.jar` to `./liferay-ce-portal-7.0-ga5/wildfly-10.0.0/modules`
 
      **`module.xml`**
     
-		<?xml version="1.0" encoding="UTF-8"?>
+        <?xml version="1.0" encoding="UTF-8"?>
         <module xmlns="urn:jboss:module:1.1" name="org.liferayext.portal">
 
         	<resources>
@@ -69,7 +69,7 @@ be done automatically:
 	    		<module name="javax.el.api" />
 	    		<module name="org.jboss.modules" />
 	    	</dependencies>
-    	</module> 
+         </module> 
 
 *    extend module `org.jboss.as.web`
      add module `org.liferayext.portal`.
