@@ -1,6 +1,6 @@
 # liferay-jee-deploy
 
-**This extension for Liferay enables traditional jee deployments for Liferay 7**. 
+**This extension for Liferay enables traditional jee deployments for Liferay 7 **. 
 
 ## What does this mean?
 - deploy a war artefact
@@ -56,8 +56,8 @@ be done automatically:
 
      **`module.xml`**
     
-        <?xml version="1.0" encoding="UTF-8"?>
-        <module xmlns="urn:jboss:module:1.1" name="org.liferayext.portal">
+         <?xml version="1.0" encoding="UTF-8"?>
+         <module xmlns="urn:jboss:module:1.1" name="org.liferayext.portal">
 
         	<resources>
 	        	<resource-root path="liferay-jee-deploy-1.0.0-SNAPSHOT.jar" />
