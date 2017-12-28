@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 /**
- * Dieser Listener stellt den Session-Timeout aus.
+ * This Listener disables session timeout.
  */
 public class SessionConfiguratorListener implements HttpSessionListener
 {

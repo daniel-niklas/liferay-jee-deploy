@@ -1,14 +1,10 @@
 /**
- * <p>
- * Dieses Paket stelle die automatische Konfiguration einer Portlet-Anwendung für Liferay bereit.
- * Damit ist das Deployment über den Liferay-Auto-Deployer nicht mehr nötig.
+ * <p>This package contains the automatic configuration for a portlet webapplication. 
+ * For this reason there is no need for the deployment mechanism of Liferay.
  * </p>
+ * 
  * <p>
- * Für die Details der Konfiguration siehe {@link org.liferayext.portal.config.LiferayConfigurator}.
- * </p>
- * <p>
- * <em>Installation:</em> diese Bibliothek sollte in das JBOSS-Modul <code>org.jboss.as.web</code>
- * aufgenommen werden und benötigt als Extra-Dependency das Modul <code>javax.xml.bind.api</code>. 
+ * For details see {@link org.liferayext.portal.config.LiferayConfigurator}.
  * </p>
  */
 package org.liferayext.portal.config;

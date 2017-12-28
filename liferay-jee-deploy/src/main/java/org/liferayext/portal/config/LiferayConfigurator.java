@@ -13,22 +13,22 @@ import org.liferayext.portal.config.dd.PortletApp;
 
 /**
  * <p>
- * Diese Klasse konfiguriert eine Portlet-Anwendung für Liferay.
- * <em>Wichtig:</em> die Portlet-Anwendung wird nur konfiguriert, wenn der
- * Init-Parameter {@value #ENABLE_PARAM} den Wert {@value #ENABLE_PARAM_ON}
- * enthält.
+ * This class configures a portlet webapplication for Liferay.</br>
+ * <em>Important:</em> the webapplication will only be configured, when the
+ * context-param {@value #ENABLE_PARAM} contains {@value #ENABLE_PARAM_ON}.
  * </p>
  * 
  * <p>
- * Folgende Einstellungen werden vorgenommen:
+ * The followig settings are covered:
  * <ul>
- * <li>Für jedes Portlet wird ein Liferay-Portlet-Servlet registriert und der
- * Liferay-Plugin-Context-Listener wird registriert.</li>
- * <li>Der Session-Timeout wird ausgestellt.<br/>
- * (das gilt für die Sessions der Portlet-Webanwendungen. Dieser werden
- * automatisch invalidiert/beendet, sobald die Session der ROOt-Webanwendung
- * beendet wird. So sind alle HTTP-Sessions auf die ROOT-Session
- * "aggregiert".</li>
+ * <li>register a Liferay servlet for for each portlet</li>
+ * <li>register the Liferay-Plugin-Context-Listener
+ * <code>com.liferay.portal.kernel.servlet.PluginContextListener</code></li>
+ * <li>disable session-timeout<br/>
+ * (this is valid for the sessions of the porlet webapplications. These will be
+ * automatically ended, when the session of the ROOT application is invalidated.
+ * As a result all HTTP-Sessions ar "aggregated" to the lifetime of the
+ * ROOT-session.</li>
  * </ul>
  * </p>
  */
@@ -36,14 +36,12 @@ public class LiferayConfigurator extends ServletContextConfigurator {
 	public static final String ENABLE_PARAM_ON = "on";
 
 	/**
-	 * Dieser Init-Parameter muß auf {@value #ENABLE_PARAM_ON} gesetzt werden,
-	 * damit die Portlet-Anwendung konfiguriert wird.
+	 * Set this init-parameter to {@value #ENABLE_PARAM_ON} to enable the
+	 * automatic configuration.
 	 */
 	public static final String ENABLE_PARAM = "org.liferayext.portal.config.jeedeploy";
 
-	/*
-	 * Siehe PortalUtil.getJsSafePortletId().
-	 */
+	// see PortalUtil.getJsSafePortletId().
 	private static String getJsSafePortletId(String portletName) {
 		return portletName.replaceAll("[ -.]", "");
 	}
@@ -75,14 +73,14 @@ public class LiferayConfigurator extends ServletContextConfigurator {
 				"com.liferay.portal.kernel.servlet.PluginContextListener", EventListener.class);
 
 		if (portletServletClass == null || pluginContextListenerClass == null) {
-			ctx.log("Liferay ist nicht verfügbar.");
+			ctx.log("Liferay is not available.");
 			// kein Liferay verfügbar
 			return;
 		}
 
 		PortletApp portletApp = readPortletApp();
 		if (portletApp == null) {
-			ctx.log("Portlet Deskriptor ist nicht vorhanden.");
+			ctx.log("no portlet descriptor available.");
 		} else {
 			for (Portlet portlet : portletApp.getPortlets()) {
 				String liferayPortletId = getJsSafePortletId(portlet.getPortletName());
@@ -91,23 +89,16 @@ public class LiferayConfigurator extends ServletContextConfigurator {
 				portletServlet.setLoadOnStartup(1);
 				portletServlet.setInitParameter("portlet-class", portlet.getPortletClass());
 				portletServlet.addMapping("/" + liferayPortletId + "/*");
-				ctx.log("Portlet " + portlet.getPortletName() + " registriert.");
+				ctx.log("Portlet " + portlet.getPortletName() + " registered.");
 			}
 		}
 
-		ctx.log("Liferay Plugin Context Listener wird registriert.");
+		ctx.log("Liferay Plugin Context Listener registered.");
 		ctx.addListener(pluginContextListenerClass);
 	}
 
 	private void configureSessionManagement() {
-		ctx.log("Session-Timeout wird ausgestellt.");
+		ctx.log("Disable session-timeout.");
 		ctx.addListener(SessionConfiguratorListener.class);
-
-		ctx.log("Servlet für Portlet-Session-Invalidierung wird installiert.");
-		Class<? extends Servlet> servletClass = findClass(
-				"de.continentale.portal.dynamicsite.PortletSessionInvalidationServlet", Servlet.class);
-		if (servletClass != null) {
-			ctx.addServlet("portlet-session-invalidation-servlet", servletClass);
-		}
 	}
 }
